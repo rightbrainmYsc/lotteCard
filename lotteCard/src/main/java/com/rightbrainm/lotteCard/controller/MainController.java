@@ -59,6 +59,7 @@ public class MainController {
 			while((str = bufferedReader.readLine()) != null) {
 				result += str + "\n";
 			}
+			bufferedReader.close();
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
