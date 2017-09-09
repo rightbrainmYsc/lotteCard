@@ -339,8 +339,8 @@
 		</div>
 		<iframe id="lotteCardFrame" style="display:block; width:100vw; height: 100vh"></iframe>
 	</div>
-	<!-- <div id="printLotteCardArea" style="display: none;"> -->
-	<div id="printLotteCardArea">
+	<div id="printLotteCardArea" style="display: none;">
+	<!-- <div id="printLotteCardArea"> -->
 		<div style="text-align: right">
 			<br />
 			<br />

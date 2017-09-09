@@ -1,6 +1,8 @@
 package com.rightbrainm.lotteCard.controller;
 
+import java.io.BufferedReader;
 import java.io.File;
+import java.io.FileReader;
 import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -8,6 +10,7 @@ import java.util.Date;
 import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
@@ -27,8 +30,7 @@ public class MainController {
 	public String fileUpload(HttpServletRequest request, MultipartFile file) {
 
 		String fileName = "";
-		String yyyyMM = new SimpleDateFormat("yyyyMM").format(new Date());
-		String filePath = request.getSession().getServletContext().getRealPath("/") + "upfiles/" + yyyyMM + "/";
+		String filePath = request.getSession().getServletContext().getRealPath("/") + "upfiles/";
 		try {
 			File temp = new File(filePath);
 			if(!temp.exists()) {
@@ -43,6 +45,27 @@ public class MainController {
 			e.printStackTrace();
 		}
 
-		return "/upfiles/" + yyyyMM + "/" + fileName;
+		return "/upfiles/" + fileName;
+	}
+
+	@RequestMapping(value="/upfiles/{fileName}")
+	public String lotteFile(HttpServletRequest request, @PathVariable("fileName") String fileName) {
+
+		File upFile = new File(request.getSession().getServletContext().getRealPath("/") + "upfiles/" + fileName + ".html");
+		String result = "";
+		try {
+			BufferedReader bufferedReader = new BufferedReader(new FileReader(upFile));
+			String str;
+			while((str = bufferedReader.readLine()) != null) {
+				result += str + "\n";
+			}
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		upFile.delete();
+		request.setAttribute("content", result);
+
+		return "upFile";
 	}
 }
