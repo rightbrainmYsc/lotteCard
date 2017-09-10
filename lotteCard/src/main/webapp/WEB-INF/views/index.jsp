@@ -7,7 +7,7 @@
 		#dropzone {
 			border:2px dotted #3292A2;
 			width:90%;
-			height:50px;
+			height:500px;
 			color:#92AAB0;
 			text-align:center;
 			font-size:24px;
@@ -260,6 +260,20 @@
 			background-size: 100% 100%;
 			text-align: left;
 		}
+		
+		#printMe{display:none}
+		@media print{
+			body{background:#fff !important}
+			.foot_inner{display: none !important}
+			.bundle_area h3{position:relative}
+			.bundle_area .bundle_cont{display:block !important;position:relative}
+			.noti_ems{display:block}
+			
+			#lotteCardDiv{display: none !important}
+			#printLotteCardArea {display: block !important}
+			.tbl_wrap_scrl{overflow:auto}
+			.tbl_new01{width:100%;font-size:12px}
+		}
 	</style>
 	<script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
 	<script>
@@ -324,8 +338,8 @@
 		var printLotteCard = function() {
 			var bill = $("#lotteCardFrame").contents().find("#popSect01");
 			$("#printLotteCardArea").append(bill);
-			$("#lotteCardDiv").css("display", "none");
-			$("#printLotteCardArea").css("display", "block");
+			//$("#lotteCardDiv").css("display", "none");
+			//$("#printLotteCardArea").css("display", "block");
 			window.print();
 		}
 	</script>
@@ -334,9 +348,11 @@
 <body>
 	<div id="dropzone">Drag & Drop Files Here</div>
 	<div id="lotteCardDiv" style="display: none;">
-		<div>
-			<button onclick="printLotteCard()">인쇄</button>
+		<br />
+		<div align="center">
+			<button onclick="printLotteCard()">인쇄하기</button>
 		</div>
+		<br />
 		<iframe id="lotteCardFrame" style="display:block; width:100vw; height: 100vh"></iframe>
 	</div>
 	<div id="printLotteCardArea" style="display: none;">
