@@ -2,10 +2,9 @@ package com.rightbrainm.lotteCard.controller;
 
 import java.io.BufferedReader;
 import java.io.File;
-import java.io.FileReader;
+import java.io.FileInputStream;
 import java.io.IOException;
-import java.text.SimpleDateFormat;
-import java.util.Date;
+import java.io.InputStreamReader;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -54,7 +53,7 @@ public class MainController {
 		File upFile = new File(request.getSession().getServletContext().getRealPath("/") + "upfiles/" + fileName + ".html");
 		String result = "";
 		try {
-			BufferedReader bufferedReader = new BufferedReader(new FileReader(upFile));
+			BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(new FileInputStream(upFile), "utf-8"));
 			String str;
 			while((str = bufferedReader.readLine()) != null) {
 				result += str + "\n";
