@@ -9,7 +9,7 @@ import org.springframework.boot.web.support.SpringBootServletInitializer;
 public class LotteCardApplication extends SpringBootServletInitializer {
 
 	protected SpringApplicationBuilder configure(SpringApplicationBuilder application) {
-
+		System.out.println("test2");
 		return application.sources(LotteCardApplication.class);
 	}
 
