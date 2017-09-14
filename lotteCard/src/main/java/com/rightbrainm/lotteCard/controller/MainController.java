@@ -19,7 +19,7 @@ public class MainController {
 
 	@RequestMapping(value="/")
 	public String Main() {
-
+		System.out.println("main");
 		return "index";
 	}
 
